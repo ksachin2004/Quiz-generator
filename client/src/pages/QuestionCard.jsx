@@ -7,12 +7,14 @@ export default function QuestionCard({
   isSinglePage,
 }) {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-2xl mx-auto">
+    <div className="bg-gradient-to-br from-white to-blue-50 p-6 md:p-8 rounded-xl shadow-lg w-full max-w-[800px] mx-auto transition-all duration-500 animate-fade-in">
       <div className="mb-2 text-gray-500 text-sm">
         Question {questionIndex + 1} / {totalQuestions}
       </div>
-      <h3 className="text-lg md:text-xl font-bold mb-4 text-gray-800">{question.question}</h3>
-      <div className="flex flex-col gap-3">
+      <h3 className="text-lg md:text-2xl font-bold mb-4 text-gray-800 leading-snug">
+        {question.question}
+      </h3>
+      <div className="flex flex-col gap-4">
         {question.options.map((opt, idx) => {
           const inputId = `q${questionIndex}-opt${idx}`;
           return (
@@ -24,7 +26,7 @@ export default function QuestionCard({
                 checked={selectedOption === idx}
                 onChange={() => onOptionSelect(idx)}
                 aria-checked={selectedOption === idx}
-                className="w-5 h-5 text-blue-600 focus:ring-blue-400 border-gray-300"
+                className="w-5 h-5 text-blue-600 focus:ring-2 focus:ring-blue-400 border-gray-300 transition-all duration-200"
               />
               <label
                 htmlFor={inputId}

@@ -43,6 +43,14 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <div className="w-screen min-h-screen bg-gradient-to-br from-sky-50 via-indigo-100 to-white overflow-x-hidden">
+      {/* Animated Scroll Indicator under Navbar */}
+      <div>
+        <div className="animate-bounce mt-1 h-6 flex flex-col items-center">
+          <span className="block w-1.5 h-1.5 rounded-full bg-blue-400 mb-1" />
+          <span className="block w-1.5 h-1.5 rounded-full bg-blue-300 mb-1" />
+          <span className="block w-1.5 h-1.5 rounded-full bg-blue-200" />
+        </div>
+      </div>
       {/* Hero Section */}
       <section className="w-full min-h-[60vh] flex items-center justify-center relative overflow-hidden">
         {/* SVG Pattern BG */}
@@ -114,7 +122,7 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-<section className="w-full py-16 px-6 bg-gradient-to-r from-sky-50 to-indigo-100 border-t border-indigo-100">
+<section id="about-developer" className="w-full py-16 px-6 bg-gradient-to-r from-sky-50 to-indigo-100 border-t border-indigo-100">
   <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
     {/* Avatar */}
     <motion.div

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import questions from "../data/questions";
 import QuestionCard from "./QuestionCard";
 import Result from "./Result";
+import QuizSetup from "./QuizSetup";
 
 function shuffle(array) {
   const arr = [...array];
@@ -73,9 +74,9 @@ export default function Quiz() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#eaf1ff] to-white text-gray-800 flex flex-col">
+    <main className="min-h-screen w-full bg-gradient-to-br from-[#eaf1ff] to-white text-gray-800 flex flex-col items-center justify-center px-2 py-6 md:py-10">
       {/* Welcome/Hero Section */}
-      <section className="flex flex-col items-center justify-center py-16 px-4 min-h-[40vh] text-center">
+      <section className="w-full flex flex-col items-center justify-center py-10 md:py-16 px-2 md:px-4 text-center max-w-3xl mx-auto">
         <motion.h1
           className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[#4D9FFF] to-[#56CCF2] bg-clip-text text-transparent drop-shadow-lg"
           initial={{ opacity: 0, y: 30 }}
@@ -98,69 +99,42 @@ export default function Quiz() {
           onClick={handleScrollToQuiz}
           className="px-8 py-3 rounded-full bg-gradient-to-r from-[#4D9FFF] to-[#56CCF2] text-white font-bold text-lg shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200"
         >
-          Give Test
+          Current Test
         </motion.button>
       </section>
 
       {/* Quiz Section */}
-      <section ref={quizSectionRef} className="flex flex-col items-center justify-center flex-1 w-full py-8 px-2">
-        <div className="w-full max-w-2xl mx-auto">
+      <section
+        ref={quizSectionRef}
+        className="flex flex-col items-center justify-center w-full flex-1 py-6 md:py-10 px-2 md:px-0"
+      >
           {!isQuizStarted && !isQuizSubmitted && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-white/60 p-8 rounded-xl shadow-lg w-full flex flex-col items-center"
+              className="w-full"
             >
-              <h2 className="text-2xl font-bold mb-6 text-center">Start a Quiz</h2>
-              <div className="flex flex-wrap justify-center gap-3 mb-6 w-full">
-                {["OS", "DBMS", "CN", "OOPS", "Mixed"].map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    className={`px-4 py-2 rounded-full font-medium border transition-all duration-200 ${
-                      subject === s
-                        ? "bg-blue-500 text-white border-blue-500 shadow-md"
-                        : "bg-white text-gray-700 border-gray-300 hover:bg-blue-50"
-                    }`}
-                    onClick={() => setSubject(s)}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-              <div className="mb-4 w-full">
-                <label className="block mb-2 font-medium text-gray-700">
-                  Number of Questions
-                </label>
-                <input
-                  type="number"
-                  min={5}
-                  max={20}
-                  value={numQuestions}
-                  onChange={e => setNumQuestions(Math.max(5, Math.min(20, Number(e.target.value))))}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-              </div>
-              <button
-                onClick={handleStart}
-                className="w-full py-3 rounded-full bg-gradient-to-r from-[#4D9FFF] to-[#56CCF2] text-white font-semibold shadow-lg hover:brightness-110 mt-4"
-              >
-                Start Quiz
-              </button>
+              <QuizSetup
+                subject={subject}
+                setSubject={setSubject}
+                numQuestions={numQuestions}
+                setNumQuestions={setNumQuestions}
+                onStart={handleStart}
+              />
             </motion.div>
           )}
 
           {isQuizStarted && !isQuizSubmitted && quizQuestions.length > 0 && (
-            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-6">
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-8 md:space-y-10">
               <AnimatePresence>
                 {quizQuestions.map((q, idx) => (
                   <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 30 }}
-                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    exit={{ opacity: 0, y: 40 }}
+                    transition={{ duration: 0.5, delay: idx * 0.07 }}
                     className="w-full"
                   >
                     <QuestionCard
@@ -177,7 +151,7 @@ export default function Quiz() {
               <div className="text-center pt-4 w-full">
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-full bg-gradient-to-r from-[#4D9FFF] to-[#56CCF2] text-white font-semibold shadow-lg hover:brightness-110 disabled:opacity-50"
+                  className="w-full py-3 rounded-full bg-gradient-to-r from-[#4D9FFF] to-[#56CCF2] text-white font-semibold shadow-lg hover:brightness-110 disabled:opacity-50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-200"
                   disabled={selectedOptions.some(opt => opt === null)}
                 >
                   Submit Quiz
@@ -187,20 +161,19 @@ export default function Quiz() {
           )}
 
           {isQuizSubmitted && (
-            <div className="w-full text-center flex flex-col items-center justify-center">
+            <div className="w-full text-center flex flex-col items-center justify-center space-y-6">
               <Result
                 score={score}
                 questions={quizQuestions}
                 selectedOptions={selectedOptions}
                 onRetake={handleRetake}
               />
-              <div className="mt-6 text-xl font-semibold">
+              <div className="text-xl font-semibold">
                 You scored {score} / {quizQuestions.length}
               </div>
             </div>
           )}
-        </div>
       </section>
-    </div>
+    </main>
   );
 }
