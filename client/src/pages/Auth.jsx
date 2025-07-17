@@ -1,58 +1,132 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { register, login } from "../services/api";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Auth() {
-  const [tab, setTab] = useState("login");
-  const [form, setForm] = useState({ email: "", password: "", confirm: "" });
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Determine mode from route
+  const routeMode = location.pathname === "/register" ? "register" : "login";
+  const [mode, setMode] = useState(routeMode);
+
+  // Sync mode with route
+  useEffect(() => {
+    setMode(routeMode);
+    setError("");
+    setForm({ identifier: "", email: "", username: "", password: "", confirm: "" });
+  }, [routeMode]);
+
+  const [form, setForm] = useState({ identifier: "", email: "", username: "", password: "", confirm: "" });
   const [error, setError] = useState("");
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
   };
 
-  const handleSubmit = e => {
+  const handleTab = (newMode) => {
+    if (newMode === "login") navigate("/login");
+    else navigate("/register");
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.email || !form.password || (tab === "signup" && !form.confirm)) {
+    if (
+      (mode === "login" && (!form.identifier || !form.password)) ||
+      (mode === "register" && (!form.email || !form.username || !form.password || !form.confirm))
+    ) {
       setError("Please fill all fields.");
       return;
     }
-    if (tab === "signup" && form.password !== form.confirm) {
-      setError("Passwords do not match.");
-      return;
+    // Trim validation for register
+    if (mode === "register") {
+      const email = form.email.trim();
+      const username = form.username.trim();
+      const password = form.password.trim();
+      const confirm = form.confirm.trim();
+      if (!email || !username || !password || !confirm) {
+        setError("Please fill all fields (no spaces only)." );
+        return;
+      }
+      if (password !== confirm) {
+        setError("Passwords do not match.");
+        return;
+      }
     }
-    // Mock: show success or redirect
-    alert(tab === "login" ? "Logged in!" : "Signed up!");
+    try {
+      let response;
+      if (mode === "login") {
+        response = await login({ identifier: form.identifier, password: form.password });
+      } else {
+        response = await register({ email: form.email.trim(), username: form.username.trim(), password: form.password.trim() });
+      }
+      const token = response.data.token;
+      const username = response.data.user?.username;
+      const email = response.data.user?.email;
+      localStorage.setItem("token", token);
+      if (username) localStorage.setItem("username", username);
+      if (email) localStorage.setItem("email", email);
+      setError("");
+      navigate("/");
+    } catch (err) {
+      setError(err.response?.data?.message || "Authentication failed.");
+    }
   };
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-50 to-indigo-100 px-4 py-12">
       <div className="w-full max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent mb-6">{tab === "login" ? "Login" : "Signup"}</h1>
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent mb-6">
+          {mode === "login" ? "Login" : "Signup"}
+        </h1>
         <div className="flex mb-6 w-full">
           <button
-            className={`flex-1 py-2 rounded-l-full font-semibold transition ${tab === "login" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
-            onClick={() => setTab("login")}
+            className={`flex-1 py-2 rounded-l-full font-semibold transition ${mode === "login" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
+            onClick={() => handleTab("login")}
           >
             Login
           </button>
           <button
-            className={`flex-1 py-2 rounded-r-full font-semibold transition ${tab === "signup" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
-            onClick={() => setTab("signup")}
+            className={`flex-1 py-2 rounded-r-full font-semibold transition ${mode === "register" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
+            onClick={() => handleTab("register")}
           >
             Signup
           </button>
         </div>
         <form className="w-full" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
-            required
-          />
+          {mode === "login" ? (
+            <input
+              type="text"
+              name="identifier"
+              placeholder="Username or Email"
+              value={form.identifier}
+              onChange={handleChange}
+              className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+              required
+            />
+          ) : (
+            <>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+                required
+              />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={form.username}
+                onChange={handleChange}
+                className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+                required
+              />
+            </>
+          )}
           <input
             type="password"
             name="password"
@@ -62,7 +136,7 @@ export default function Auth() {
             className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
             required
           />
-          {tab === "signup" && (
+          {mode === "register" && (
             <input
               type="password"
               name="confirm"
@@ -78,17 +152,27 @@ export default function Auth() {
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white rounded-full font-semibold shadow-md hover:brightness-110 transition mb-2"
           >
-            {tab === "login" ? "Login" : "Signup"}
+            {mode === "login" ? "Login" : "Signup"}
           </button>
         </form>
         <div className="mt-4 text-gray-500 text-sm">
-          {tab === "login" ? (
-            <>Don't have an account? <button className="text-blue-600 hover:underline" onClick={() => setTab("signup")}>Signup</button></>
+          {mode === "login" ? (
+            <>
+              Don't have an account?{" "}
+              <button className="text-blue-600 hover:underline" onClick={() => handleTab("register")}>
+                Signup
+              </button>
+            </>
           ) : (
-            <>Already have an account? <button className="text-blue-600 hover:underline" onClick={() => setTab("login")}>Login</button></>
+            <>
+              Already have an account?{" "}
+              <button className="text-blue-600 hover:underline" onClick={() => handleTab("login")}>
+                Login
+              </button>
+            </>
           )}
         </div>
       </div>
     </main>
   );
-} 
+}

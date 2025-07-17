@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const OS = () => {
+  const { user } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 to-indigo-100 px-4 pt-10 pb-12">
       <div className="max-w-screen-xl mx-auto px-6 py-12">
@@ -12,7 +14,6 @@ const OS = () => {
 
         {/* Subject Flow */}
         <section className="mb-16">
-
             <h2 className="text-2xl font-semibold text-indigo-600 mb-4 ">📘 Subject Flow — Operating Systems</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl ml-0">
     {[
@@ -40,7 +41,16 @@ const OS = () => {
   </div>
 </section>
 
+        {/* Preview for unauthenticated users */}
+        {!user && (
+          <div className="mt-10 text-center bg-white/80 rounded-xl shadow p-8 max-w-2xl mx-auto">
+            <h2 className="text-xl font-semibold text-indigo-700 mb-2">Sign in to unlock full OS study material!</h2>
+            <p className="text-gray-600 mb-4">You can preview the subject flow and important topics. To access detailed notes and quizzes, please <Link to='/auth' className="text-blue-600 underline font-medium">login or signup</Link>.</p>
+          </div>
+        )}
 
+        {/* Full content for authenticated users */}
+        {user && <>
         {/* Important Topics */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-indigo-600 mb-4 ">⭐ Important Topics</h2>
@@ -82,6 +92,7 @@ const OS = () => {
             Take OS Quiz
           </Link>
         </div>
+        </>}
       </div>
     </div>
   );
