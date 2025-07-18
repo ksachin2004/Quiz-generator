@@ -17,6 +17,19 @@ const errorHandler = require('./middleware/error');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${PORT}`));
+
+
+
+
+
+
+//TEST if backend is working
+app.get('/api/test', (req, res) => {
+  res.send('API working!');
+});
+
+
 
 // Security HTTP headers
 app.use(helmet());

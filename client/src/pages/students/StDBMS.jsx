@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const DBMS = () => {
   const { user } = useAuth();
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-indigo-100 px-4 pt-10 pb-12">
+    <>
       <div className="max-w-screen-xl mx-auto px-6 py-12">
         {/* Subject Title */}
         <h1 className="text-4xl font-bold text-center text-blue-700 mb-10">Database Management System (DBMS)</h1>
@@ -92,7 +92,7 @@ const DBMS = () => {
         </div>
         </>}
       </div>
-    </div>
+    </>
   );
 };
 

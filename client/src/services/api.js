@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
   return config;
 }, (error) => Promise.reject(error));
 
-export const register = (userData) => api.post('http://localhost:5000/api/auth/register', userData);
-export const login = (userData) => api.post('http://localhost:5000/api/auth/login', userData);
-export const getMe = () => api.get('http://localhost:5000/api/auth/me');
+export const register = (userData) => api.post('/auth/register', userData);
+export const login = (userData) => api.post('/auth/login', userData);
+export const getMe = () => api.get('/auth/me');
 export default api;

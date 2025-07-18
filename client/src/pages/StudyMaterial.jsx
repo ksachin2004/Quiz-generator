@@ -4,6 +4,38 @@ import { Link } from "react-router-dom";
 // Mock login state (replace with real auth logic later)
 const isLoggedIn = false;
 
+export default function StudyMaterial() {
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-100 px-4 pt-28 pb-12">
+      <div className="w-full max-w-3xl mx-auto text-center mb-10 animate-fade-in">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 leading-tight drop-shadow">
+          Premium Study Material for OS, DBMS, CN & OOPs
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 mb-6">
+          Curated resources to help you master core CS subjects for exams and placements.
+        </p>
+
+        {!isLoggedIn && (
+          <div className="bg-white rounded-2xl shadow-xl p-8 mt-6 border border-blue-100 transition hover:shadow-2xl hover:-translate-y-1 duration-300 ease-in-out">
+            <p className="mb-5 text-lg text-gray-700">
+              🔒 Please log in to unlock all the study materials and start learning!
+            </p>
+            <Link
+              to="/auth"
+              className="inline-block px-6 py-3 bg-indigo-600 text-white text-lg rounded-full shadow-md hover:bg-indigo-700 transition font-semibold"
+            >
+              Login / Signup
+            </Link>
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+
+/*
+
 const materials = [
   { title: "Operating Systems", desc: "Best notes, MCQs, and resources for OS.", link: "/os" },
   { title: "DBMS", desc: "Top DBMS study guides and practice sets.", link: "/dbms" },
@@ -11,19 +43,7 @@ const materials = [
   { title: "OOPs", desc: "OOPs concepts, interview Qs, and more.", link: "/oops" },
 ];
 
-export default function StudyMaterial() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-50 to-indigo-100 px-4 pt-28 pb-12">
-      <div className="w-full max-w-2xl mx-auto text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Access Top-Quality Study Material for OS, DBMS, CN, OOPs</h1>
-        <p className="text-gray-600 mb-6">Curated resources to help you ace your exams and placements.</p>
-        {!isLoggedIn && (
-          <div className="bg-white rounded-xl shadow p-6 mb-6 flex flex-col items-center">
-            <p className="mb-4 text-lg text-gray-700">Please login to access all study materials.</p>
-            <Link to="/auth" className="px-6 py-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition font-semibold">Login / Signup</Link>
-          </div>
-        )}
-      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
         {materials.map((mat, idx) => (
           <div key={idx} className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-start hover:shadow-xl transition">
@@ -33,6 +53,5 @@ export default function StudyMaterial() {
           </div>
         ))}
       </div>
-    </main>
-  );
-} 
+
+*/

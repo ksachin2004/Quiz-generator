@@ -68,7 +68,11 @@ export default function Auth() {
       if (username) localStorage.setItem("username", username);
       if (email) localStorage.setItem("email", email);
       setError("");
-      navigate("/");
+      if (mode === "login") {
+        navigate("/students/stHome");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Authentication failed.");
     }

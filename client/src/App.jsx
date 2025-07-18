@@ -5,12 +5,14 @@ import Result from "./pages/Result";
 import StudyMaterial from "./pages/StudyMaterial";
 import Strategy from "./pages/Strategy";
 import Navbar from "./pages/Navbar";
-import OOPS from "./pages/OOPS";
-import OS from "./pages/OS";
-import DBMS from "./pages/DBMS";
-import CN from "./pages/CN";
 import PrivateRoute from "./pages/PrivateRoute";
 import Auth from "./pages/Auth";
+import StTempelate from "./pages/students/StTempelate";
+import StOS from "./pages/students/StOS";
+import StDBMS from "./pages/students/StDBMS";
+import StCN from "./pages/students/StCN";
+import StOOPS from "./pages/students/StOOPS";
+import StHome from "./pages/students/StHome";
 
 export default function App() {
   return (
@@ -25,10 +27,16 @@ export default function App() {
         <Route path="/studymaterial" element={<StudyMaterial />} />
         <Route path="/strategy" element={<Strategy />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/os" element={<PrivateRoute><OS /></PrivateRoute>} />
-        <Route path="/dbms" element={<PrivateRoute><DBMS /></PrivateRoute>} />
-        <Route path="/cn" element={<PrivateRoute><CN /></PrivateRoute>} />
-        <Route path="/oops" element={<PrivateRoute><OOPS /></PrivateRoute>} />
+        {/* Remove old /os, /dbms, /cn, /oops routes for students */}
+        {/* Student layout and subject routes */}
+        <Route path="/students/" element={<PrivateRoute><StTempelate /></PrivateRoute>}>
+          <Route index element={<StHome />} />
+          <Route path="stHome" element={<StHome />} />
+          <Route path="os" element={<StOS />} />
+          <Route path="dbms" element={<StDBMS />} />
+          <Route path="cn" element={<StCN />} />
+          <Route path="oops" element={<StOOPS />} />
+        </Route>
       </Routes>
     </Router>
   );
