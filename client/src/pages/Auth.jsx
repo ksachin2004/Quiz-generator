@@ -67,9 +67,10 @@ export default function Auth() {
       localStorage.setItem("token", token);
       if (username) localStorage.setItem("username", username);
       if (email) localStorage.setItem("email", email);
+      localStorage.setItem("isLoggedIn", "true"); // Set login flag
       setError("");
       if (mode === "login") {
-        navigate("/students/stHome");
+        navigate("/students/"); // Redirect to /students/ after login
       } else {
         navigate("/");
       }

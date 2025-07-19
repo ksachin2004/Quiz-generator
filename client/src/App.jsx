@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
@@ -13,11 +13,16 @@ import StDBMS from "./pages/students/StDBMS";
 import StCN from "./pages/students/StCN";
 import StOOPS from "./pages/students/StOOPS";
 import StHome from "./pages/students/StHome";
+// Wrapper to access location
+function AppWrapper() {
+  const location = useLocation();
 
-export default function App() {
+  // Hide Navbar for all /students/* routes
+  const hideNavbar = location.pathname.startsWith("/students");
+
   return (
-    <Router>
-      <Navbar />
+    <>
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Auth mode="login" />} />
@@ -27,9 +32,16 @@ export default function App() {
         <Route path="/studymaterial" element={<StudyMaterial />} />
         <Route path="/strategy" element={<Strategy />} />
         <Route path="/auth" element={<Auth />} />
-        {/* Remove old /os, /dbms, /cn, /oops routes for students */}
+
         {/* Student layout and subject routes */}
-        <Route path="/students/" element={<PrivateRoute><StTempelate /></PrivateRoute>}>
+        <Route
+          path="/students/"
+          element={
+            <PrivateRoute>
+              <StTempelate />
+            </PrivateRoute>
+          }
+        >
           <Route index element={<StHome />} />
           <Route path="stHome" element={<StHome />} />
           <Route path="os" element={<StOS />} />
@@ -38,6 +50,14 @@ export default function App() {
           <Route path="oops" element={<StOOPS />} />
         </Route>
       </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppWrapper />
     </Router>
   );
 }
