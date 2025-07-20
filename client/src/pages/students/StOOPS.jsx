@@ -1703,7 +1703,7 @@ class Z implements X, Y {
 
                       {/* Chapter 6 */}
                       <div className="border border-slate-200 rounded-xl shadow-sm p-4 bg-white">
-                        <h3 className="font-semibold text-indigo-600 mb-2">🔹 Chapter 6: Inheritance (In Depth)</h3>
+                        <h3 className="font-semibold text-indigo-600 mb-2">🔹 Chapter 6: Inheritance </h3>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Code reuse and relationships between classes.</li>
                           <li>What is Inheritance?</li>
@@ -1720,7 +1720,7 @@ class Z implements X, Y {
 
                       {/* Chapter 7 */}
                       <div className="border border-slate-200 rounded-xl shadow-sm p-4 bg-white">
-                        <h3 className="font-semibold text-indigo-600 mb-2">🔹 Chapter 7: Polymorphism (In Depth)</h3>
+                        <h3 className="font-semibold text-indigo-600 mb-2">🔹 Chapter 7: Polymorphism </h3>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Different forms of behavior using the same interface.</li>
                           <li>What is Polymorphism?</li>
