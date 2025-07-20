@@ -47,7 +47,7 @@ function SubjectFlowBar({ topics, activeIdx, setActiveIdx }) {
             type="button"
             onClick={() => setActiveIdx(idx)}
             className={`relative flex flex-col items-center group transition-transform duration-300 focus:outline-none ${activeIdx === idx ? 'scale-110 z-10' : 'hover:scale-105'} `}
-            style={{ minWidth: 110 }}
+            style={{ minWidth: 220 }}
           >
             {/* Roadmap line */}
             {idx !== 0 && (
