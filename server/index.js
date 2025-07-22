@@ -70,7 +70,7 @@ app.use(errorHandler);
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
-import path from "path";
+const path = require("path");
 const __dirname = path.resolve();
 
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
