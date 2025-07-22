@@ -28,9 +28,9 @@ export default function QuizSetup({ subject, setSubject, numQuestions, setNumQue
           <input
             type="number"
             min={5}
-            max={20}
+            max={25}
             value={numQuestions}
-            onChange={e => setNumQuestions(Math.max(5, Math.min(20, Number(e.target.value))))}
+            onChange={e => setNumQuestions(Math.max(1, Math.min(25, Number(e.target.value))))}
             className="mt-2 w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base transition-all duration-200"
           />
         </div>

@@ -83,7 +83,7 @@ export default function Quiz() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          Welcome to CS Quiz Generator
+          Welcome to TechPrepBuddy
         </motion.h1>
         <motion.p
           className="text-lg md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto"

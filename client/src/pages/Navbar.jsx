@@ -31,7 +31,7 @@ export default function Navbar() {
         {/* Logo/Site Name */}
         <Link to="/" className="flex items-center text-2xl font-bold text-blue-600 tracking-tight">
           {/* Optionally add a logo icon here */}
-          CS Quiz Generator
+          TechPrepBuddy
         </Link>
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-2">

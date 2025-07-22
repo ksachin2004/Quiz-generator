@@ -67,7 +67,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            Welcome to <span className="bg-gradient-to-r from-indigo-500 to-sky-400 bg-clip-text text-transparent">CS Quiz Generator</span>
+            Welcome to <span className="bg-gradient-to-r from-indigo-500 to-sky-400 bg-clip-text text-transparent">TechPrepBuddy</span>
           </motion.h1>
           <motion.p
             className="text-lg md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed"
