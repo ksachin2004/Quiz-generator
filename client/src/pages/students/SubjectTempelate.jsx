@@ -10,14 +10,14 @@ function SubjectTemplate({ subjectName, flowTopics, accordionTopics, quizPath = 
   const [openAccordionIdx, setOpenAccordionIdx] = useState(null);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-indigo-100 via-white to-blue-100 font-sans tracking-wide flex flex-col items-center">
+    <div className="min-h-screen w-full bg-gradient-to-br from-indigo-100 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans tracking-wide flex flex-col items-center transition-colors duration-300">
       {/* Top Section: Heading */}
       <div className="w-full max-w-screen-xl mx-auto flex flex-col items-center pt-10 pb-4 px-4 md:px-12 animate-fade-in">
         <div className="w-full text-center mb-2">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight drop-shadow-lg" style={{ fontFamily: 'Inter, ui-sans-serif' }}>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-slate-100 mb-2 tracking-tight drop-shadow-lg" style={{ fontFamily: 'Inter, ui-sans-serif' }}>
             {subjectName}
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 mb-2 font-medium animate-slide-in-up">
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mb-2 font-medium animate-slide-in-up">
             Master the core concepts of {subjectName} with a modern, structured flow
           </p>
         </div>
@@ -35,7 +35,7 @@ function SubjectTemplate({ subjectName, flowTopics, accordionTopics, quizPath = 
         {/* Give Test Button */}
         <div className="w-full flex justify-center pt-12 pb-4">
           <button
-            className="w-full max-w-md bg-blue-600 text-white text-2xl font-semibold py-4 px-8 rounded-xl shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200 hover:scale-101 active:scale-98 mt-4"
+            className="w-full max-w-md bg-blue-600 dark:bg-blue-500 text-white text-2xl font-semibold py-4 px-8 rounded-xl shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-700 transition-all duration-200 hover:scale-101 active:scale-98 mt-4"
             onClick={() => navigate(quizPath)}
           >
             <span className="inline-block">Give Test</span>

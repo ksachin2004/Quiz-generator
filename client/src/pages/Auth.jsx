@@ -80,20 +80,20 @@ export default function Auth() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-50 to-indigo-100 px-4 py-12">
-      <div className="w-full max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent mb-6">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 px-4 py-12 transition-colors duration-300">
+      <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl dark:shadow-2xl p-8 flex flex-col items-center transition-colors duration-300">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-sky-400 bg-clip-text text-transparent mb-6 dark:from-blue-300 dark:to-sky-500">
           {mode === "login" ? "Login" : "Signup"}
         </h1>
         <div className="flex mb-6 w-full">
           <button
-            className={`flex-1 py-2 rounded-l-full font-semibold transition ${mode === "login" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
+            className={`flex-1 py-2 rounded-l-full font-semibold transition ${mode === "login" ? "bg-blue-600 text-white" : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-gray-700"}`}
             onClick={() => handleTab("login")}
           >
             Login
           </button>
           <button
-            className={`flex-1 py-2 rounded-r-full font-semibold transition ${mode === "register" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-100"}`}
+            className={`flex-1 py-2 rounded-r-full font-semibold transition ${mode === "register" ? "bg-blue-600 text-white" : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-gray-700"}`}
             onClick={() => handleTab("register")}
           >
             Signup
@@ -107,7 +107,7 @@ export default function Auth() {
               placeholder="Username or Email"
               value={form.identifier}
               onChange={handleChange}
-              className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+              className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
               required
             />
           ) : (
@@ -118,7 +118,7 @@ export default function Auth() {
                 placeholder="Email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+                className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
                 required
               />
               <input
@@ -127,7 +127,7 @@ export default function Auth() {
                 placeholder="Username"
                 value={form.username}
                 onChange={handleChange}
-                className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+                className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
                 required
               />
             </>
@@ -138,7 +138,7 @@ export default function Auth() {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+            className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
             required
           />
           {mode === "register" && (
@@ -148,32 +148,28 @@ export default function Auth() {
               placeholder="Confirm Password"
               value={form.confirm}
               onChange={handleChange}
-              className="w-full mb-4 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base"
+              className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
               required
             />
           )}
-          {error && <div className="text-red-500 mb-4 text-sm">{error}</div>}
+          {error && <div className="text-red-500 dark:text-red-400 mb-4 text-sm">{error}</div>}
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white rounded-full font-semibold shadow-md hover:brightness-110 transition mb-2"
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-sky-400 dark:from-blue-700 dark:to-sky-600 text-white rounded-full font-semibold shadow-md hover:brightness-110 transition mb-2"
           >
             {mode === "login" ? "Login" : "Signup"}
           </button>
         </form>
-        <div className="mt-4 text-gray-500 text-sm">
+        <div className="mt-4 text-gray-500 dark:text-gray-300 text-sm">
           {mode === "login" ? (
             <>
               Don't have an account?{" "}
-              <button className="text-blue-600 hover:underline" onClick={() => handleTab("register")}>
-                Signup
-              </button>
+              <button className="text-blue-600 dark:text-blue-400 hover:underline" onClick={() => handleTab("register")}>Signup</button>
             </>
           ) : (
             <>
               Already have an account?{" "}
-              <button className="text-blue-600 hover:underline" onClick={() => handleTab("login")}>
-                Login
-              </button>
+              <button className="text-blue-600 dark:text-blue-400 hover:underline" onClick={() => handleTab("login")}>Login</button>
             </>
           )}
         </div>

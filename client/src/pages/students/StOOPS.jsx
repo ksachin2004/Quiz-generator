@@ -34,14 +34,16 @@ const detailedTopics = [
 function SubjectFlowBar({ topics, activeIdx, setActiveIdx }) {
   return (
     <div className="w-full overflow-x-auto pb-4 mb-30 flex justify-center">
-      <div className="inline-flex gap-8 min-w-full px-4">
+      <div className="inline-flex gap-10 min-w-full px-2">
         {topics.map((topic, idx) => (
           <button
             key={topic}
             type="button"
             onClick={() => setActiveIdx(idx)}
-            className={`relative flex flex-col items-center group transition-transform duration-300 focus:outline-none ${activeIdx === idx ? 'scale-110 z-10' : 'hover:scale-105'} `}
-            style={{  minWidth: 'auto', padding: '0 1rem'}}
+            className={`relative flex flex-col items-center group transition-transform duration-300 focus:outline-none bg-white border border-slate-200 shadow-md ${
+              activeIdx === idx ? 'scale-110 z-10 ring-2 ring-indigo-200/60' : 'hover:scale-105'
+            }`}
+            style={{ minWidth: 220 }}
           >
             {/* Roadmap line */}
             {idx !== 0 && (
@@ -49,19 +51,19 @@ function SubjectFlowBar({ topics, activeIdx, setActiveIdx }) {
             )}
             {/* Node */}
             <span
-              className={`flex items-center justify-center w-10 h-10 rounded-full shadow-lg transition-all duration-300 border-2 ${
+              className={`flex items-center justify-center w-10 h-10 rounded-full shadow-lg transition-all duration-300 border-2 bg-white ${
                 activeIdx === idx
-                  ? 'bg-gradient-to-br from-indigo-500 to-blue-400 border-indigo-400 shadow-indigo-300/60 text-white'
-                  : 'bg-white/60 border-slate-200 shadow-slate-200/60 text-indigo-500 group-hover:shadow-indigo-200/80'
-              } ${activeIdx === idx ? 'ring-4 ring-indigo-200/40' : ''}`}
-              style={{ boxShadow: activeIdx === idx ? '0 0 16px 4px #6366f1aa' : undefined }}
+                  ? 'border-indigo-400 shadow-indigo-300/60 text-indigo-700 ring-4 ring-indigo-200/40'
+                  : 'border-slate-200 shadow-slate-200/60 text-indigo-500 group-hover:shadow-indigo-200/80'
+              }`}
+              style={activeIdx === idx ? { boxShadow: '0 0 16px 4px #6366f1aa' } : {}}
             >
               <span className="font-bold text-lg select-none">{idx + 1}</span>
             </span>
             {/* Label */}
             <span
               className={`mt-2 text-xs font-medium transition-colors duration-300 whitespace-nowrap ${
-                activeIdx === idx ? 'text-indigo-700' : 'text-slate-600 group-hover:text-indigo-500'
+                activeIdx === idx ? 'text-indigo-700' : 'text-slate-800 group-hover:text-indigo-500'
               }`}
             >
               {topic}
@@ -72,7 +74,6 @@ function SubjectFlowBar({ topics, activeIdx, setActiveIdx }) {
     </div>
   );
 }
-
 function Accordion({ topics, openIdx, setOpenIdx }) {
   return (
     <div className="w-full flex flex-col gap-6">
@@ -81,15 +82,15 @@ function Accordion({ topics, openIdx, setOpenIdx }) {
         return (
           <div
             key={topic}
-            className={`w-full rounded-2xl shadow-xl transition-all duration-300 border border-slate-200 backdrop-blur-md bg-white/40 bg-gradient-to-br from-white/60 to-slate-100/60 hover:shadow-2xl ${
-              isOpen ? 'bg-white/70 border-indigo-200 shadow-indigo-200/40' : ''
+            className={`w-full rounded-2xl shadow-xl transition-all duration-300 border border-slate-200 backdrop-blur-md bg-white hover:shadow-2xl ${
+              isOpen ? 'bg-white border-indigo-200 shadow-indigo-200/40' : ''
             }`}
             style={{ boxShadow: isOpen ? '0 8px 32px 0 rgba(99,102,241,0.10)' : undefined }}
           >
             <button
-              className={`w-full flex items-center justify-between px-8 py-5 text-left font-semibold text-lg tracking-wide rounded-2xl transition-all duration-300 focus:outline-none ${
-                isOpen ? 'text-indigo-700 bg-indigo-50/60' : 'text-slate-800 hover:bg-slate-50/60'
-              }`}
+                className={`w-full flex items-center justify-between px-8 py-5 text-left font-semibold text-lg tracking-wide rounded-2xl transition-all duration-300 focus:outline-none bg-white ${
+                  isOpen ? 'text-indigo-700' : 'text-slate-800 hover:bg-slate-50'
+                }`}
               onClick={() => setOpenIdx(isOpen ? null : idx)}
               aria-expanded={isOpen}
               aria-controls={`panel-${topic}`}
