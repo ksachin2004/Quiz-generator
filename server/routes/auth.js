@@ -30,7 +30,7 @@ router.post(
       if (user) {
         return res.status(400).json({ message: 'User with that username or email already exists' });
       }
-      const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(4);
       const hashedPassword = await bcrypt.hash(password, salt);
       user = new User({ username, email, password: hashedPassword });
       await user.save();
