@@ -115,7 +115,7 @@ export default function Auth() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="abc@pqr.com"
                 value={form.email}
                 onChange={handleChange}
                 className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"
@@ -124,7 +124,7 @@ export default function Auth() {
               <input
                 type="text"
                 name="username"
-                placeholder="Username"
+                placeholder="userame"
                 value={form.username}
                 onChange={handleChange}
                 className="w-full mb-4 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-600 text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 transition-colors duration-300"

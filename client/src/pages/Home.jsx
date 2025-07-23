@@ -152,7 +152,7 @@ export default function Home() {
         About Me
       </h2>
       <p className="text-gray-700 dark:text-gray-200 mb-4 leading-relaxed tracking-wide text-base md:text-lg">
-        <span className="font-semibold">Sachin Khandekar</span> — Final year B.Tech student in Information Technology at <span className="font-semibold">VJTI, Mumbai</span>. I’m passionate about building real-world projects, learning new technologies, and helping others strengthen their fundamentals in computer science and software engineering.
+        <span className="font-semibold">Sachin Khandekar</span> — <span className="font-semibold">Final Year B.Tech</span> student in <span className="font-semibold">Information Technology </span>at <span className="font-semibold">Veermata Jijabai Technological Institute (VJTI, Mumbai)</span>. I’m passionate about building real-world projects, learning new technologies, and helping others strengthen their fundamentals in computer science and software engineering.
       </p>
       <div className="flex justify-center md:justify-start gap-6 mt-4">
         <motion.a
