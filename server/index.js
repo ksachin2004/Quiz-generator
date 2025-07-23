@@ -65,15 +65,29 @@ app.get('/', (req, res) => {
 // Error handling middleware (should be last)
 app.use(errorHandler);
 
-// Start Server
+
+
+
+
+
+//Previous one
+//Start Server
 // app.listen(PORT, () => {
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
-const path = require("path");
 
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
+
+
+
+
+// const path = require("path");
+
+// app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+// });
+
+
