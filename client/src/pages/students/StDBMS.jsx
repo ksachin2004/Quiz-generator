@@ -2506,7 +2506,333 @@ GRANT SELECT ON Employees TO analyst;`}</pre>
       </div>
     </div>
   </div>
-) : topic === 'Most Relevant Interview Questions' ? (
+) 
+
+
+// ... existing code ...
+: topic === 'Data Modeling & Database Design' ? (
+  <div className="space-y-8">
+    {/* ...existing Data Modeling & Database Design content... */}
+  </div>
+) : topic === 'Database Structure: Tables, Keys, and Constraints' ? (
+  <div className="space-y-8">
+    {/* Section Title */}
+    <div className="flex items-center gap-4 mb-2">
+      <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-400 text-white shadow-lg">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </span>
+      <h2 className="text-2xl md:text-3xl font-extrabold text-blue-700 tracking-tight drop-shadow-lg">Database Structure: Tables, Keys, and Constraints</h2>
+    </div>
+
+    {/* 1. What is a Relation in DBMS? */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">📘</span>
+        <span className="font-semibold text-lg text-blue-700">Understanding Data Organization and Linkage in DBMS: Relations, Keys, and Constraints</span>
+      </div>
+      <div className="mb-2">
+        <span className="font-semibold text-blue-700">What is a Relation in DBMS?</span>
+        <p>A relation in a Relational Database Management System (RDBMS) is a mathematical concept derived from relational algebra. It represents a set of tuples (rows) sharing the same attributes (columns). In practical terms, a relation = table in a database. Each tuple = row. Each attribute = column name.</p>
+        <ul className="list-disc pl-6 text-slate-700 text-sm mb-2">
+          <li>No duplicate tuples (rows)</li>
+          <li>Tuples are unordered</li>
+          <li>Attributes are atomic (no multi-valued fields)</li>
+        </ul>
+        <div className="overflow-x-auto mb-2">
+          <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+            <thead>
+              <tr className="bg-indigo-50 text-indigo-700">
+                <th className="px-2 py-1 border-b">StudentID</th>
+                <th className="px-2 py-1 border-b">Name</th>
+                <th className="px-2 py-1 border-b">Age</th>
+                <th className="px-2 py-1 border-b">Dept</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="px-2 py-1">101</td><td className="px-2 py-1">Alice</td><td className="px-2 py-1">20</td><td className="px-2 py-1">CSE</td></tr>
+              <tr><td className="px-2 py-1">102</td><td className="px-2 py-1">Bob</td><td className="px-2 py-1">21</td><td className="px-2 py-1">IT</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span className="text-green-700 text-sm font-semibold">✅ This Student table is a relation with 2 tuples and 4 attributes.</span>
+      </div>
+    </div>
+
+    {/* 2. What is a Table in DBMS? */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-indigo-700">What is a Table in DBMS?</span>
+      </div>
+      <p>A table is a physical implementation of a relation. It is a named collection of data organized in rows and columns. Rows represent individual records. Columns represent attributes of the data. A table is defined by a schema, which specifies attribute name, data type, and constraints (e.g., NOT NULL, UNIQUE).</p>
+      <div className="overflow-x-auto mb-2">
+        <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Student (\n  StudentID INT PRIMARY KEY,\n  Name VARCHAR(50) NOT NULL,\n  Age INT,\n  Dept VARCHAR(30)\n);`}</code></pre>
+      </div>
+    </div>
+
+    {/* 3. What are Rows and Columns in DBMS? */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-blue-700">What are Rows and Columns in DBMS?</span>
+      </div>
+      <p>Rows (also called records or tuples): Each row holds a single data item (entity) and its attribute values. Columns: Represent the properties or fields of the entity. Each column has a name and a data type.</p>
+      <span className="text-slate-700 text-sm">Example: In the Student table above, the row (101, 'Alice', 20, 'CSE') is a record, and StudentID, Name, etc., are columns.</span>
+    </div>
+
+    {/* 4. Keys in DBMS */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔑</span>
+        <span className="font-semibold text-lg text-indigo-700">Keys in DBMS</span>
+      </div>
+      <ul className="list-disc pl-6 text-slate-700 text-sm mb-2">
+        <li>Uniquely identify records</li>
+        <li>Establish relationships between tables</li>
+        <li>Enforce data integrity</li>
+      </ul>
+    </div>
+
+    {/* 5. Primary Key */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-blue-700">Primary Key</span>
+      </div>
+      <p>A primary key is a field (or combination of fields) that uniquely identifies each row in a table. Properties: Must be unique, NOT NULL, Only one primary key per table.</p>
+      <div className="overflow-x-auto mb-2">
+        <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Employee (\n  EmpID INT PRIMARY KEY,\n  Name VARCHAR(50),\n  Salary FLOAT\n);`}</code></pre>
+      </div>
+      <span className="text-slate-700 text-sm">Here, EmpID is the primary key.</span>
+    </div>
+
+    {/* 6. Foreign Key */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-indigo-700">Foreign Key</span>
+      </div>
+      <p>A foreign key is a column in one table that references the primary key of another table. Purpose: Establish relationships between tables, Enforce referential integrity.</p>
+      <div className="overflow-x-auto mb-2">
+        <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Department (\n  DeptID INT PRIMARY KEY,\n  DeptName VARCHAR(30)\n);\n\nCREATE TABLE Employee (\n  EmpID INT PRIMARY KEY,\n  Name VARCHAR(50),\n  DeptID INT,\n  FOREIGN KEY (DeptID) REFERENCES Department(DeptID)\n);`}</code></pre>
+      </div>
+    </div>
+
+    {/* 7. Candidate Key */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-blue-700">Candidate Key</span>
+      </div>
+      <p>A candidate key is a minimal set of attributes that can uniquely identify a tuple. A table can have multiple candidate keys. The primary key is chosen from among the candidate keys.</p>
+      <div className="overflow-x-auto mb-2">
+        <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+          <thead>
+            <tr className="bg-indigo-50 text-indigo-700">
+              <th className="px-2 py-1 border-b">RollNo</th>
+              <th className="px-2 py-1 border-b">Email</th>
+              <th className="px-2 py-1 border-b">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="px-2 py-1">101</td><td className="px-2 py-1">alice@example.com</td><td className="px-2 py-1">Alice</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span className="text-slate-700 text-sm">Candidate Keys: RollNo, Email<br/>Primary Key (chosen): RollNo</span>
+    </div>
+
+    {/* 8. Superkey vs Candidate Key */}
+<div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+  <div className="flex items-center gap-2 mb-2">
+    <span className="text-blue-600 text-xl">🔹</span>
+    <span className="font-semibold text-lg text-indigo-700">Superkey vs Candidate Key</span>
+  </div>
+  <div className="overflow-x-auto mb-2">
+    <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+      <thead>
+        <tr className="bg-indigo-50 text-indigo-700">
+          <th className="px-2 py-1 border-b">Criteria</th>
+          <th className="px-2 py-1 border-b">Super Key</th>
+          <th className="px-2 py-1 border-b">Candidate Key</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="px-2 py-1">Definition</td>
+          <td className="px-2 py-1">A set of one or more attributes that uniquely identify a row</td>
+          <td className="px-2 py-1">A minimal set of attributes that can uniquely identify a row</td>
+        </tr>
+        <tr>
+          <td className="px-2 py-1">Redundancy</td>
+          <td className="px-2 py-1">May include unnecessary extra attributes</td>
+          <td className="px-2 py-1">No redundant attributes; it's minimal</td>
+        </tr>
+        <tr>
+          <td className="px-2 py-1">Uniqueness</td>
+          <td className="px-2 py-1">Always unique</td>
+          <td className="px-2 py-1">Always unique and minimal</td>
+        </tr>
+        <tr>
+          <td className="px-2 py-1">Example</td>
+          <td className="px-2 py-1">{"{StudentID, FullName}, {EmailID}"}</td>
+          <td className="px-2 py-1">{"{StudentID}, {EmailID}"}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+    {/* 9. Primary Key vs Unique Key */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔹</span>
+        <span className="font-semibold text-lg text-blue-700">Primary Key vs Unique Key</span>
+      </div>
+      <div className="overflow-x-auto mb-2">
+        <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+          <thead>
+            <tr className="bg-indigo-50 text-indigo-700">
+              <th className="px-2 py-1 border-b">Feature</th>
+              <th className="px-2 py-1 border-b">Primary Key</th>
+              <th className="px-2 py-1 border-b">Unique Key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="px-2 py-1">Uniqueness</td><td className="px-2 py-1">Enforced</td><td className="px-2 py-1">Enforced</td></tr>
+            <tr><td className="px-2 py-1">NULL values</td><td className="px-2 py-1">Not allowed</td><td className="px-2 py-1">Allowed (only one NULL)</td></tr>
+            <tr><td className="px-2 py-1">Number per table</td><td className="px-2 py-1">Only one</td><td className="px-2 py-1">Multiple allowed</td></tr>
+            <tr><td className="px-2 py-1">Used for</td><td className="px-2 py-1">Row identification</td><td className="px-2 py-1">Enforcing data uniqueness</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* 10. Constraints in DBMS */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">📌</span>
+        <span className="font-semibold text-lg text-indigo-700">Constraints in DBMS</span>
+      </div>
+      <div className="overflow-x-auto mb-2">
+        <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+          <thead>
+            <tr className="bg-indigo-50 text-indigo-700">
+              <th className="px-2 py-1 border-b">Constraint</th>
+              <th className="px-2 py-1 border-b">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="px-2 py-1">NOT NULL</td><td className="px-2 py-1">Column cannot have NULL values</td></tr>
+            <tr><td className="px-2 py-1">UNIQUE</td><td className="px-2 py-1">Ensures unique values across rows</td></tr>
+            <tr><td className="px-2 py-1">PRIMARY KEY</td><td className="px-2 py-1">Uniquely identifies rows (NOT NULL + UNIQUE)</td></tr>
+            <tr><td className="px-2 py-1">FOREIGN KEY</td><td className="px-2 py-1">References primary key of another table</td></tr>
+            <tr><td className="px-2 py-1">CHECK</td><td className="px-2 py-1">Validates values against a condition</td></tr>
+            <tr><td className="px-2 py-1">DEFAULT</td><td className="px-2 py-1">Sets default value if none is provided</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="overflow-x-auto mb-2">
+        <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Orders (\n  OrderID INT PRIMARY KEY,\n  Quantity INT CHECK (Quantity > 0),\n  Status VARCHAR(20) DEFAULT 'Pending'\n);`}</code></pre>
+      </div>
+    </div>
+
+    {/* 11. Referential Integrity */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔗</span>
+        <span className="font-semibold text-lg text-blue-700">Referential Integrity</span>
+      </div>
+      <p>Referential Integrity ensures that the value of a foreign key in a child table matches a valid value in the parent table. If a record in the parent is deleted or modified, the database ensures that dependent records are handled appropriately.</p>
+      <ul className="list-disc pl-6 text-slate-700 text-sm mb-2">
+        <li>ON DELETE CASCADE – Deletes child records</li>
+        <li>ON UPDATE CASCADE – Updates foreign key values</li>
+        <li>SET NULL – Sets the foreign key value to NULL</li>
+      </ul>
+      <div className="overflow-x-auto mb-2">
+        <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Course (\n  CourseID INT PRIMARY KEY,\n  Name VARCHAR(100)\n);\n\nCREATE TABLE Enrollment (\n  StudentID INT,\n  CourseID INT,\n  FOREIGN KEY (CourseID) REFERENCES Course(CourseID)\n  ON DELETE CASCADE\n);`}</code></pre>
+      </div>
+      <span className="text-slate-700 text-sm">If a course is deleted, all enrollments for that course are deleted too.</span>
+    </div>
+
+    {/* 12. Advantages of Foreign Keys */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">✅</span>
+        <span className="font-semibold text-lg text-indigo-700">Advantages of Foreign Keys</span>
+      </div>
+      <ul className="list-disc pl-6 text-slate-700 text-sm mb-2">
+        <li>Maintain data consistency across related tables</li>
+        <li>Prevent orphan records</li>
+        <li>Facilitate JOIN operations to retrieve related data</li>
+        <li>Support relational design principles</li>
+      </ul>
+    </div>
+
+    {/* 13. Are NULL, Blank, and Zero the Same? */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-blue-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">❓</span>
+        <span className="font-semibold text-lg text-blue-700">Are NULL, Blank, and Zero the Same?</span>
+      </div>
+      <div className="overflow-x-auto mb-2">
+        <table className="min-w-[320px] w-full text-sm border border-slate-200 rounded-lg">
+          <thead>
+            <tr className="bg-indigo-50 text-indigo-700">
+              <th className="px-2 py-1 border-b">Term</th>
+              <th className="px-2 py-1 border-b">Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td className="px-2 py-1">NULL</td><td className="px-2 py-1">Unknown or missing value</td></tr>
+            <tr><td className="px-2 py-1">Blank</td><td className="px-2 py-1">Empty string '', still a known value</td></tr>
+            <tr><td className="px-2 py-1">Zero</td><td className="px-2 py-1">Numeric value 0, not NULL or blank</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span className="text-green-700 text-sm font-semibold">✅ NULL ≠ Blank ≠ 0</span>
+    </div>
+
+    {/* Additional Interview-Relevant Concepts */}
+    <div className="bg-white/80 rounded-xl p-4 shadow-md border-l-4 border-indigo-400">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🔍</span>
+        <span className="font-semibold text-lg text-indigo-700">Additional Interview-Relevant Concepts</span>
+      </div>
+      <div className="mb-2">
+        <span className="font-semibold text-blue-700">Composite Key</span>
+        <p>A composite key is a combination of two or more columns used together to uniquely identify a row.</p>
+        <div className="overflow-x-auto mb-2">
+          <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Enrollment (\n  StudentID INT,\n  CourseID INT,\n  PRIMARY KEY (StudentID, CourseID)\n);`}</code></pre>
+        </div>
+      </div>
+      <div className="mb-2">
+        <span className="font-semibold text-blue-700">Surrogate Key</span>
+        <p>A surrogate key is an artificial, system-generated key (like an auto-increment ID) used as a primary key instead of using natural attributes.</p>
+        <div className="overflow-x-auto mb-2">
+          <pre className="bg-slate-50 rounded p-2 text-xs overflow-x-auto"><code>{`CREATE TABLE Users (\n  UserID INT AUTO_INCREMENT PRIMARY KEY,\n  Email VARCHAR(100) UNIQUE\n);`}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    {/* Conclusion */}
+    <div className="bg-gradient-to-r from-blue-100 via-indigo-50 to-cyan-100 rounded-xl p-4 shadow-inner border-l-4 border-blue-300">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-blue-600 text-xl">🎯</span>
+        <span className="font-semibold text-lg text-blue-700">Conclusion</span>
+      </div>
+      <p>Understanding how data is organized and linked through relations, keys, and constraints is foundational to designing efficient, consistent, and scalable databases. These concepts ensure data integrity, support relational operations, and are crucial in real-world applications and interview scenarios.</p>
+      <ul className="list-disc pl-6 text-slate-700 text-sm">
+        <li>✅ Always normalize your tables, choose meaningful keys, and apply constraints to enforce business rules effectively.</li>
+      </ul>
+    </div>
+  </div>
+)
+// ... existing code ...
+
+
+: topic === 'Most Relevant Interview Questions' ? (
   <div className="space-y-10">
     {/* Section Title */}
     <div className="flex items-center gap-4 mb-2">
