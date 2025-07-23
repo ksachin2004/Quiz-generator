@@ -43,7 +43,7 @@ app.use(limiter);
 // CORS: only allow frontend
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://tech-prep-buddy-3fvo.vercel.app"
+  "https://tech-prep-buddy.vercel.app/"
 ];
 
 app.use(cors({
